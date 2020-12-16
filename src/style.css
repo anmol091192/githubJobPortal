@@ -1,0 +1,38 @@
+.header {
+    background: #5865E0;
+    border-radius: 0 0 0 60px;
+    color: white;
+    padding: 20px 40px;
+}
+
+.formWrapper {
+    margin-top: -45px;
+    background: #fff;
+    width: fit-content;
+    border-radius: 3px;
+    padding: 4px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.paginationWrapper {
+    margin-top: 20px;
+}
+
+.cardWrapper {
+    width:calc(33% - 50px);
+    margin: 25px;
+    max-height: 400px;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cardTitle {
+    word-wrap: break-word;
+}

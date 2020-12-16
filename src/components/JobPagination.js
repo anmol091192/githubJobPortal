@@ -1,5 +1,6 @@
 import React from 'react'
 import { Pagination } from 'react-bootstrap';
+import style from '../style.css';
 
 export default function JobPagination({ page, setPage, hasNextPage }) {
     function adjustPage(amount) {
@@ -7,7 +8,7 @@ export default function JobPagination({ page, setPage, hasNextPage }) {
     }
 
     return (
-        <Pagination>
+        <Pagination className="paginationWrapper">
             { page !== 1 && <Pagination.Prev onClick={() => adjustPage(-1)} />}
             { page !== 1 && <Pagination.Item onClick={() => setPage(1)}>1</Pagination.Item>}
             { page > 2 && <Pagination.Ellipsis />}
