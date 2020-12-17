@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { Badge, Card, Collapse, Image } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import style from '../style.css';
 
 export default function Job({ job }) {
     const [ open, setOpen ] = useState(false);
     const [state, setState] = useState(job);
+    let history = useHistory();
+
+    const handleClick = () => {
+        history.push("/applyjob", state);
+    };
 
 
     return (
-        <Card className="mb-3 cardWrapper">
+        <Card className="mb-3 cardWrapper" onClick={handleClick}>
             <Card.Header>
-                <Image className="d-none d-md-block" height="50" width="70" alt={job.company} src={job.company_logo} />
+                <Image className="d-none d-md-block job-logo" height="60" width="60" alt={job.company} src={job.company_logo || 'insta.png'} />
             </Card.Header>
             <Card.Body>
                 <div className="d-flex justify-content-between">
@@ -31,17 +36,6 @@ export default function Job({ job }) {
                         })}
                     </div>
                 </div>
-                <Card.Text>
-                    <Link
-                        className="btn btn-primary"
-                        to={{
-                            pathname: "/applyjob",
-                            state
-                        }}
-                        >
-                        View Job
-                    </Link>
-                </Card.Text>
             </Card.Body>
         </Card>
     )
