@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useGetJobs from '../useGetJobs';
+import useGetJobs from '../hooks/useGetJobs';
 import { Container } from 'react-bootstrap';
 import Job from '../components/Job';
 import JobPagination from '../components/JobPagination';

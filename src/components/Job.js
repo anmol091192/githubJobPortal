@@ -32,7 +32,7 @@ export default function Job({ job }) {
                             {job.type}
                         </Badge>
                         {job.location.split(",").map(el => {
-                            return <Badge variant="secondary" className="mr-2">{el}</Badge>
+                            return <Badge variant="secondary" className="mr-2" key={el}>{el}</Badge>
                         })}
                     </div>
                 </div>
