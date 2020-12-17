@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Badge, Card, Button, Collapse, Image } from 'react-bootstrap';
+import { Badge, Card, Collapse, Image } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import { Link } from "react-router-dom";
 import style from '../style.css';
@@ -26,7 +26,9 @@ export default function Job({ job }) {
                         <Badge variant="secondary" className="mr-2">
                             {job.type}
                         </Badge>
-                        <Badge variant="secondary">{job.location}</Badge>
+                        {job.location.split(",").map(el => {
+                            return <Badge variant="secondary" className="mr-2">{el}</Badge>
+                        })}
                     </div>
                 </div>
                 <Card.Text>
@@ -40,12 +42,6 @@ export default function Job({ job }) {
                         View Job
                     </Link>
                 </Card.Text>
-                <Collapse in={open}>
-                    <div className="mt-4">
-                        <ReactMarkdown source={job.description} />
-                        <ReactMarkdown source={job.how_to_apply} />
-                    </div>
-                </Collapse>
             </Card.Body>
         </Card>
     )

@@ -36,3 +36,43 @@
 .cardTitle {
     word-wrap: break-word;
 }
+
+.companyName {
+    background: white;
+    margin-top: -50px;
+    border-radius: 3px;
+    width: 75%;
+    border-radius: 3px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.companyDescription {
+    background: white;
+    margin-top: 20px;
+    border-radius: 3px;
+    width: 75%;
+    border-radius: 3px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.jobTitle {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.jobDescription {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.jobApply {
+    background: white;
+    margin-top: 20px;
+    border-radius: 3px;
+    width: 75%;
+    border-radius: 3px;
+    margin-right: auto;
+    margin-left: auto;
+}
