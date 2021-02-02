@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { Badge, Card, Collapse, Image } from 'react-bootstrap';
-import ReactMarkdown from 'react-markdown';
-import { useHistory, Link } from "react-router-dom";
-import style from '../style.css';
+import { Badge, Card, Image } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 
 export default function Job({ job }) {
-    const [ open, setOpen ] = useState(false);
-    const [state, setState] = useState(job);
+    const [ state ] = useState(job);
     let history = useHistory();
 
     const handleClick = () => {

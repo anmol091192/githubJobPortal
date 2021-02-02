@@ -7,7 +7,6 @@
 
 .formWrapper {
     margin-top: -45px;
-    background: #fff;
     width: fit-content;
     border-radius: 3px;
     padding: 4px;
@@ -23,17 +22,12 @@
     display: flex;
 }
 
-.cardWrapper {
-    border-radius: 3px;
-    border: none;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
-    width: 30%;
-    min-width: 280px;
-    margin: 20px auto;
-    max-height: 400px;
+.themeButton {
+    position: absolute;
+    right: 20px;
+    top: 28px;
 }
+
 
 .cardWrapper:hover {
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);

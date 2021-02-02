@@ -1,21 +1,45 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 
 export const LocationContext = createContext();
+export const LocationUpdate = createContext();
+export const SelectedFilter = createContext();
 
-export const LocationProvider = props => {
-    // const [autoLocation, setAutoLocation] = useState({});
+export function LocationProvider({ children }) {
 
+    const [autoLocation, setAutoLocation] = useState();
+    const [ select, setSelect ] = useState("Full time");
+    const [theme, setTheme] = useState({main:"dark"});
 
-    // if (navigator.geolocation) {
-    //     navigator.geolocation.watchPosition(function (position) {
-    //         setAutoLocation({
-    //             lat: position.coords.latitude,
-    //             long: position.coords.longitude,
-    //         });
-    //     });
-    // }
-    
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(function (position) {
+                setAutoLocation({
+                    lat: position.coords.latitude,
+                    long: position.coords.longitude,
+                });
+            });
+        }
+    }
 
-    return <LocationContext.Provider value="ohh">{props.chldren}</LocationContext.Provider>;
+    console.log(autoLocation)
+
+    const data = {
+        autoLocation,
+        select,
+        setSelect,
+        getLocation,
+        theme,
+        setTheme
+    };
+
+    return (
+        <LocationContext.Provider value={data}>
+           
+                    {children}
+         
+        </LocationContext.Provider>
+    );
+
 
 }
+

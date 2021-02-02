@@ -1,6 +1,5 @@
 import React from 'react'
 import { Pagination } from 'react-bootstrap';
-import style from '../style.css';
 
 export default function JobPagination({ page, setPage, hasNextPage }) {
     function adjustPage(amount) {

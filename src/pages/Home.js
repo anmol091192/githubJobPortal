@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import Job from '../components/Job';
 import JobPagination from '../components/JobPagination';
 import SearchForm from '../components/SearchForm';
+import NavBar from '../components/NavBar';
 import style from '../style.css';
 
 function Home() {
@@ -11,12 +12,11 @@ function Home() {
     const [params, setParams] = useState({});
     const [page, setPage] = useState(1);
     const { jobs, loading, error, hasNextPage } = useGetJobs(params, page);
+    console.log(params);
 
     return (
         <>
-            <div className="container-fluid header">
-                <h1 className="mb-4">devjobs</h1>
-            </div>
+            <NavBar />
             <Container className="my-4">
                 <SearchForm
                     setPage={setPage}

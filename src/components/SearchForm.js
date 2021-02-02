@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Col, Button, InputGroup } from 'react-bootstrap';
-import style from '../style.css';
+import Filter from './Filter';
 
 export default function SearchForm({
     setPage,
@@ -16,13 +16,14 @@ export default function SearchForm({
             description,
             full_time: isFullTime,
             location,
+            
         });
         event.preventDefault();
     }
 
     return (
         <Form className="mb-4 formWrapper">
-            <Form.Row className="align-items-center">
+            <Form.Row className="align-items-center justify-content-between">
                 <Col xs="auto">
                     <Form.Label htmlFor="inlineFormInputGroupDescription" srOnly>
                         Description
@@ -60,7 +61,7 @@ export default function SearchForm({
                     </InputGroup>
                 </Col>
                 <Col xs="auto">
-                    <Form.Check
+                    {/* <Form.Check
                         className="mb-1"
                         id="full-time"
                         label="Full Time Only"
@@ -68,7 +69,8 @@ export default function SearchForm({
                         onChange={() => setIsFullTime(!isFullTime)} 
                         value={isFullTime}    
                         type="checkbox"
-                    />
+                    /> */}
+                    <Filter />
                 </Col>
                 <Col xs="auto">
                     <Button
