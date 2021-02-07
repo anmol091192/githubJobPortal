@@ -1,6 +1,7 @@
 import { React, useContext } from 'react';
-import { Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { LocationContext } from '../context/LocationContext';
+import { BiSun, BiMoon } from 'react-icons/bi';
 
 export default function NavBar() {
     const data = useContext(LocationContext);
@@ -17,7 +18,16 @@ export default function NavBar() {
     return (
         <div className="container-fluid header">
             <h1 className="mb-4">devjobs</h1>
-            <Button className="themeButton" onClick={() => changetheme()}> Toggle Theme </Button>
+            <Form className="themeButton" >
+                <BiSun />
+                <Form.Check 
+                    type="switch"
+                    id="custom-switch"
+                    className="themeCheck"
+                    onClick={() => changetheme()}
+                />
+                <BiMoon />
+            </Form>
         </div>
     )
 }

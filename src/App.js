@@ -6,22 +6,14 @@ import ApplyJob from './pages/ApplyJob';
 import { GlobalStyles } from './global';
 import { lightTheme, darkTheme } from './theme';
 import Home from './pages/Home';
-
-
-// const GlobalStyle = createGlobalStyle`
-// body {
-//   background-color: ${props => props.theme.main === 'dark' ? '#111' : '#EEE'};
-//   color: ${props => props.theme.main === 'dark' ? '#EEE' : '#111'};
-// }
-// `
+import './style.css';
 
 export default function App() {
   const {theme} = useContext(LocationContext);
   return (
-    <ThemeProvider theme={theme.main === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme.main === 'dark' ? lightTheme : darkTheme}>
       <GlobalStyles />
         <Router>
-          <div>
             <Switch>
               <Route exact path="/">
                 <Home />
@@ -30,7 +22,6 @@ export default function App() {
                 <ApplyJob />
               </Route>
             </Switch>
-          </div>
         </Router>
     </ThemeProvider>
   )

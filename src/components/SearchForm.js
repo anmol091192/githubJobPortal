@@ -1,57 +1,60 @@
 import React, { useState } from 'react';
 import { Form, Col, Button, InputGroup } from 'react-bootstrap';
-import Filter from './Filter';
+import { MdSearch, MdLocationOn } from 'react-icons/md';
+import useGetLocation from '../hooks/useGetLocation';
 
-export default function SearchForm({
-    setPage,
-    setParams,
-}) {
+const SearchForm = ({ setParams }) => {
+    const latlong = useGetLocation();
     const [description, setDescription] = useState('');
     const [isFullTime, setIsFullTime] = useState(false);
     const [location, setLocation] = useState('');
 
     const handleSearch = (event) => {
-        setPage(1);
+        let lat, long;
+        if(location !== null){
+            lat=null;
+            long=null;
+        }else if(latlong.cordinates) {
+            lat = latlong.cordinates.lat;
+            long = latlong.cordinates.lng;
+        }else {
+            lat=null;
+            long=null;
+        }
+
         setParams({
             description,
             full_time: isFullTime,
             location,
-            
+            lat,
+            long,
         });
         event.preventDefault();
     }
 
     return (
         <Form className="mb-4 formWrapper">
-            <Form.Row className="align-items-center justify-content-between">
-                <Col xs="auto">
-                    <Form.Label htmlFor="inlineFormInputGroupDescription" srOnly>
-                        Description
-                    </Form.Label>
-                    <InputGroup className="mb-1">
-                        <InputGroup.Prepend>
-                        <InputGroup.Text>@</InputGroup.Text>
-                        </InputGroup.Prepend>
+            <Form.Row className="formRowWrapper">
+                <Col xs={12} md={4}>
+                    <InputGroup className="description">
+                        <MdSearch className="icon" />
                         <Form.Control 
                             id="inlineFormInputGroupDescription" 
+                            className="inputField"
                             name="description" 
                             onChange={(event) => setDescription(event.target.value)}
-                            placeholder="Description"
+                            placeholder="Filter by title, companies, expertise..."
                             type="text"
                             value={description} 
                         />
                     </InputGroup>
                 </Col>
-                <Col xs="auto">
-                    <Form.Label htmlFor="inlineFormInputGroupLocation" srOnly>
-                        Location
-                    </Form.Label>
-                    <InputGroup className="mb-1">
-                        <InputGroup.Prepend>
-                        <InputGroup.Text>@</InputGroup.Text>
-                        </InputGroup.Prepend>
+                <Col xs={12} md={4}>
+                    <InputGroup className="location">
+                        <MdLocationOn className="icon"/>
                         <Form.Control 
                             id="inlineFormInputGroupLocation" 
+                            className="inputField"
                             name="location"
                             onChange={(event) => setLocation(event.target.value)}
                             placeholder="Location"
@@ -60,22 +63,20 @@ export default function SearchForm({
                         />
                     </InputGroup>
                 </Col>
-                <Col xs="auto">
-                    {/* <Form.Check
-                        className="mb-1"
-                        id="full-time"
-                        label="Full Time Only"
-                        name="full_time"
-                        onChange={() => setIsFullTime(!isFullTime)} 
-                        value={isFullTime}    
+                <Col xs={12} md={2}>
+                    <Form.Check
+                        custom
+                        inline
+                        label="Full time Only"
                         type="checkbox"
-                    /> */}
-                    <Filter />
+                        id="checkbox-fulltime"
+                        onClick={() => setIsFullTime(!isFullTime)}
+                    />
                 </Col>
-                <Col xs="auto">
+                <Col xs={12} md={2}>
                     <Button
                         type="submit"
-                        className="mb-1"
+                        className="buttonClass"
                         onClick={(event) => handleSearch(event)}
                     >
                         Search
@@ -84,4 +85,6 @@ export default function SearchForm({
             </Form.Row>
         </Form>
     )
-}
+};
+
+export default SearchForm;

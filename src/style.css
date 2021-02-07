@@ -1,5 +1,5 @@
 .header {
-    background: #5865E0;
+    background: #6473ff;
     border-radius: 0 0 0 60px;
     color: white;
     padding: 20px 40px;
@@ -22,13 +22,6 @@
     display: flex;
 }
 
-.themeButton {
-    position: absolute;
-    right: 20px;
-    top: 28px;
-}
-
-
 .cardWrapper:hover {
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 }
@@ -46,44 +39,14 @@
     word-wrap: break-word;
 }
 
-.companyName {
-    background: white;
-    margin-top: -50px;
-    border-radius: 3px;
-    width: 75%;
-    border-radius: 3px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.companyDescription {
-    background: white;
-    margin-top: 20px;
-    border-radius: 3px;
-    width: 75%;
-    border-radius: 3px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
 .jobTitle {
-    width: 100%;
     margin-top: 10px;
 }
 
 .jobDescription {
     margin-top: 20px;
     padding: 20px;
-}
-
-.jobApply {
-    background: white;
-    margin-top: 20px;
-    border-radius: 3px;
-    width: 75%;
-    border-radius: 3px;
-    margin-right: auto;
-    margin-left: auto;
+    text-align: left;
 }
 
 .card-header {
@@ -98,4 +61,16 @@
 .job-logo {
     border-radius: 25%;
     box-shadow: 0px 1px 6px rgba(0,0,0,0.2);
+}
+
+.jobContainer {
+    text-align: center;
+}
+
+.jobCardBody {
+    word-break: break-all;
+}
+
+.themeCheck {
+    margin-left: 6px;
 }

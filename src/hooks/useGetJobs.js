@@ -8,14 +8,14 @@ const ACTIONS = {
     UPDATE_HAS_NEXT_PAGE: 'update-has-next-page'
 }
 
-const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json';
+const BASE_URL = 'https://api.allorigins.win/raw?url=https://jobs.github.com/positions.json';
 
 function reducer(state, action) {
     switch(action.type) {
         case ACTIONS.MAKE_REQUEST:
             return { loading: true, jobs: [] };
         case ACTIONS.GET_DATA:
-            return { ...state, loading:false, jobs: action.payload.jobs };
+            return { ...state, loading:false, jobs: [...action.payload.jobs] };
         case ACTIONS.ERROR:
             return { ...state, loading: false, error: action.payload.error, jobs: [] };
         case ACTIONS.UPDATE_HAS_NEXT_PAGE:
@@ -25,29 +25,23 @@ function reducer(state, action) {
     }
 }
 
-export default function useGetJobs(params, page){
+const useGetJobs = (params) => {
+    console.log("jobs")
     const [state, dispatch] = useReducer(reducer, { jobs: [], loading: true});
 
     useEffect(() => {
+        console.log("Inside useGetJobs Effect");
         dispatch({ type: ACTIONS.MAKE_REQUEST });
         axios.get(BASE_URL, {
-            params: { markdown: true, page: page, ...params }
+            params: { markdown: true, ...params }
         }).then(res => {
             dispatch({ type: ACTIONS.GET_DATA, payload: { jobs: res.data } });
-            dispatch({ type: ACTIONS.UPDATE_HAS_NEXT_PAGE, payload: { hasNextPage: res.data.length !== 0 } });
         }).catch(e => {
             dispatch({ type: ACTIONS.ERROR, payload: { error: e } })
         })
-
-        axios.get(BASE_URL, {
-            params: { markdown: true, page: page, ...params }
-        }).then(res => {
-            dispatch({ type: ACTIONS.UPDATE_HAS_NEXT_PAGE, payload: { hasNextPage: res.data.length !== 0 } })
-        }).catch(e => {
-            dispatch({ type: ACTIONS.ERROR, payload: { error: e } })
-        })
-
-    },[params, page]);
+    },[params]);
 
     return state;
 }
+
+export default useGetJobs;

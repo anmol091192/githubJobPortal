@@ -1,36 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState,useMemo } from 'react';
 import useGetJobs from '../hooks/useGetJobs';
 import { Container } from 'react-bootstrap';
 import Job from '../components/Job';
-import JobPagination from '../components/JobPagination';
 import SearchForm from '../components/SearchForm';
 import NavBar from '../components/NavBar';
-import style from '../style.css';
+import { Button } from 'react-bootstrap';
 
 function Home() {
 
     const [params, setParams] = useState({});
-    const [page, setPage] = useState(1);
-    const { jobs, loading, error, hasNextPage } = useGetJobs(params, page);
-    console.log(params);
+    const [ visible,setVisible ] = useState(6);
+    const { jobs, loading, error } = useGetJobs(params);
+
+    console.log({Home_Params: params, visible, jobs, loading, error});
+
+    const showMoreItems = () => {
+        setVisible((preValue) => preValue + 6);
+    }
+
 
     return (
         <>
             <NavBar />
-            <Container className="my-4">
+            <Container className="my-4 jobContainer">
                 <SearchForm
-                    setPage={setPage}
                     setParams={setParams}
                 />
-                <JobPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
                 {loading && <h1>Loading...</h1>}
                 {error && <h1>Error. Try Refreshing</h1>}
                 <div className="cardsContainer">
-                    {jobs.map(job => {
+                    {jobs.slice(0,visible).map(job => {
                         return <Job key={job.id} job={job} />
                     })}
                 </div>
-                <JobPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
+                { visible <= jobs.length && <Button className="buttonClass" onClick={showMoreItems}>Load More</Button> }
             </Container>
         </>
     );

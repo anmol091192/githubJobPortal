@@ -17,7 +17,7 @@ export default function Job({ job }) {
                 <Image className="d-none d-md-block job-logo" height="60" width="60" alt={job.company} src={job.company_logo || 'insta.png'} />
             </Card.Header>
             <Card.Body>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between jobCardBody">
                     <div>
                         <Card.Title className="cardTitle">
                             {job.title} - <span className="text-muted font-weight-light">{job.company}</span>
