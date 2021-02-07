@@ -6,7 +6,6 @@ export const SelectedFilter = createContext();
 
 export function LocationProvider({ children }) {
 
-    // const [autoLocation, setAutoLocation] = useState();
     const [ select, setSelect ] = useState("Full time");
     const [theme, setTheme] = useState({main:"dark"});
 

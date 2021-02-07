@@ -26,11 +26,9 @@ function reducer(state, action) {
 }
 
 const useGetJobs = (params) => {
-    console.log("jobs")
     const [state, dispatch] = useReducer(reducer, { jobs: [], loading: true});
 
     useEffect(() => {
-        console.log("Inside useGetJobs Effect");
         dispatch({ type: ACTIONS.MAKE_REQUEST });
         axios.get(BASE_URL, {
             params: { markdown: true, ...params }

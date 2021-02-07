@@ -63,7 +63,7 @@ const SearchForm = ({ setParams }) => {
                         />
                     </InputGroup>
                 </Col>
-                <Col xs={12} md={2}>
+                <Col xs={12} md={2} style={{fontSize:"8px",justifyContent:"center"}}>
                     <Form.Check
                         custom
                         inline

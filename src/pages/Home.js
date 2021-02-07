@@ -12,8 +12,6 @@ function Home() {
     const [ visible,setVisible ] = useState(6);
     const { jobs, loading, error } = useGetJobs(params);
 
-    console.log({Home_Params: params, visible, jobs, loading, error});
-
     const showMoreItems = () => {
         setVisible((preValue) => preValue + 6);
     }
